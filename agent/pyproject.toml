@@ -1,0 +1,12 @@
+[project]
+name = "coqui-harbor-agent"
+version = "0.1.0"
+description = "Harbor external agent wrapper for Coqui — bridges Harbor's evaluation framework with Coqui's CLI agent."
+requires-python = ">=3.10"
+dependencies = [
+    "harbor-bench",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

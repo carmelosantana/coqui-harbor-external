@@ -1,0 +1,8 @@
+{
+    "total_trials": 5,
+    "passed": 3,
+    "failed": 2,
+    "accuracy": 0.6,
+    "mean_reward": 0.6,
+    "duration_sec": 450.7
+}

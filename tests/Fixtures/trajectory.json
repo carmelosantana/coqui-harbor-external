@@ -1,0 +1,7 @@
+[
+    {"role": "assistant", "content": "I'll create the file now.", "tool_calls": [{"name": "write_file", "arguments": {"path": "hello.py", "content": "print('hello')"}}]},
+    {"role": "tool", "content": "File written successfully."},
+    {"role": "assistant", "content": "The file has been created. Let me verify it works.", "tool_calls": [{"name": "exec", "arguments": {"command": "python3 hello.py"}}]},
+    {"role": "tool", "content": "hello"},
+    {"role": "assistant", "content": "done(response: 'Created hello.py and verified it prints hello.')"}
+]

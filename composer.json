@@ -1,0 +1,67 @@
+{
+    "name": "carmelosantana/coqui-harbor-external",
+    "description": "Harbor benchmarking toolkit for Coqui — task management, eval execution, and result analysis via the Harbor CLI",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Carmelo Santana"
+        }
+    ],
+    "keywords": [
+        "php-agents",
+        "harbor",
+        "benchmark",
+        "terminal-bench",
+        "tbench",
+        "evaluation",
+        "coqui",
+        "toolkit"
+    ],
+    "require": {
+        "php": "^8.4"
+    },
+    "require-dev": {
+        "carmelosantana/php-agents": "^0.7",
+        "pestphp/pest": "^3.0",
+        "phpstan/phpstan": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "CarmeloSantana\\CoquiHarborExternal\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "CarmeloSantana\\CoquiHarborExternal\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "pest",
+        "analyse": "phpstan analyse"
+    },
+    "extra": {
+        "php-agents": {
+            "toolkits": [
+                "CarmeloSantana\\CoquiHarborExternal\\HarborToolkit"
+            ],
+            "description": "Harbor benchmarking — manage tasks, run evals, analyze results, and track benchmark campaigns via the Harbor CLI",
+            "skills": "skills",
+            "loops": "config/loops",
+            "gated": {
+                "harbor_run": ["*"],
+                "harbor_task_delete": ["*"],
+                "harbor_cleanup": ["*"]
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

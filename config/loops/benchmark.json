@@ -1,0 +1,28 @@
+{
+    "name": "benchmark",
+    "description": "Automated Harbor benchmark loop: plan tasks, run evaluations, analyze results. Terminates when the reviewer approves the benchmark report.",
+    "roles": [
+        {
+            "role": "plan",
+            "prompt": "You are planning a Harbor benchmark campaign. Use the harbor-benchmarking skill.\n\n1. Run harbor_check to verify dependencies.\n2. Identify what tasks exist (harbor_task_list) or scaffold new ones (harbor_task_init).\n3. Validate all tasks (harbor_task_validate).\n4. Create a plan artifact documenting: which tasks to run, which model(s) to test, what the success criteria are.\n5. Create todos for each evaluation run needed.\n\nPrevious stage output (if any):\n{{previous_output}}",
+            "skills": ["harbor-benchmarking"],
+            "maxIterations": 30
+        },
+        {
+            "role": "coder",
+            "prompt": "You are executing a Harbor benchmark campaign. Use the harbor-benchmarking skill.\n\n1. Check the plan artifact and todo list for what runs are needed.\n2. Execute each benchmark run with harbor_run.\n3. After each run completes, analyze results with harbor_results and harbor_failures.\n4. If comparing runs, use harbor_compare.\n5. Mark todos complete as runs finish.\n6. Create a benchmark report artifact with the full results.\n\nPrevious stage output:\n{{previous_output}}",
+            "skills": ["harbor-benchmarking"],
+            "maxIterations": 48
+        },
+        {
+            "role": "reviewer",
+            "prompt": "You are reviewing a Harbor benchmark report. Evaluate the results:\n\n1. Check the benchmark report artifact for completeness.\n2. Verify all planned runs were executed (check todos).\n3. Assess whether results meet the success criteria from the plan.\n4. Check for regressions or concerning patterns.\n5. If the report is complete and results are satisfactory, respond with APPROVED.\n6. If issues found, provide specific feedback for the next iteration.\n\nPrevious stage output:\n{{previous_output}}",
+            "skills": ["harbor-benchmarking"],
+            "maxIterations": 15
+        }
+    ],
+    "termination": {
+        "type": "evaluation_bound",
+        "value": "APPROVED"
+    }
+}

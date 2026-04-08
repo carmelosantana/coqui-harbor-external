@@ -1,0 +1,13 @@
+[task]
+name = "coqui/file-editing-01"
+description = "Create a Python script that prints hello world"
+keywords = ["python", "file-creation", "basic"]
+
+[agent]
+timeout_sec = 300
+
+[verifier]
+timeout_sec = 60
+
+[environment]
+allow_internet = false
